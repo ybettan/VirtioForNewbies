@@ -6,7 +6,7 @@ My name is Yonathan Bettan and I work at RedHat in the virtualization KVM team.
 
 This blog has 2 main purposes, the first is to give you an idea of what virtio is and why should we use it when the second is to serve as a step-by-step guide describing how to write a virtio device from scratch with some code examples.
 
-In addition, I will write a SIMPLE virtio educational example and documented device that you will be able to find in my [fork](https://github.com/ybettan/qemu/tree/virtio/hw/virtio) of the Qemu project at  and its driver [here](https://github.com/ybettan/QemuDeviceDrivers/tree/master/virtio).
+In addition, I will write a SIMPLE virtio educational example and documented device that you will be able to find at [ybettan/qemu/virtio branch][ybettan/qemu/virtio branch] and its driver [ybettan/QemuDeviceDrivers-master branch][ybettan/QemuDeviceDrivers-master branch].
 
 ## Motivation
 
@@ -104,7 +104,7 @@ These two drivers are communicating via the virtio protocol that is based on vir
   <img width="300" height="300" src="images/drivers_communication.png">
 </p>
 
-As describe in the [virtio-specification](http://docs.oasis-open.org/virtio/virtio/v1.0/virtio-v1.0.html) there are three different ways of implementing the transport of a virtio device:
+As describe in the [virtio-spec][virtio-spec], there are three different ways of implementing the transport of a virtio device:
 
   * **Over PCI bus** – we will focus on this one
   * Over MMIO
@@ -128,19 +128,26 @@ When creating a new device there are some steps we should follow:
     * merge it into the official virtio specification
       * `git clone git clone https://github.com/oasis-tcs/virtio-spec.git`
       * add your device
-        * use <https://github.com/ybettan/virtio-spec.git> as reference
+        * use [ybettan/virtio-spec/master branch][ybettan/virtio-spec/master branch] as reference
         * since the specification is written in LaTex, you will need it to write your own device specification
           * for Fedora users: `sudo dnf install texlive-scheme-full`
       * send your patch to virtio-comment@lists.oasis-open.org (mailing list) for feedback first
       * then send it to virtio@lists.oasis-open.org for review
-    * for more information check [virtio-specification](http://docs.oasis-open.org/virtio/virtio/v1.0/virtio-v1.0.html)
+    * for more information check [virtio-spec][virtio-spec]
    
 2. write the device implementation
-    * you can look at the example device at  [Qemu-device-implementation](https://github.com/ybettan/qemu/blob/virtio/hw/virtio/virtio-example.c) located in my fork of the Qemu project
+    * you can look at the example device at  [ybettan/qemu/virtio branch][ybettan/qemu/virtio branch] located in my fork of the Qemu project
     * make sure to follow the full commit to find all other files related
-    * once it’s done, check the [Qemu-wiki-page](https://wiki.qemu.org/Contribute) for the full “how to contribute” to Qemu guide
+    * once it’s done, check the [wiki-qemu][wiki-qemu] for the full “how to contribute” to Qemu guide
 
 3. write the Linux driver for this device
-    * you can look at the example driver at  [QemuDeviceDriver](https://github.com/ybettan/QemuDeviceDrivers/blob/master/virtio/virtio_example_driver.c) 
+    * you can look at the example driver at  [ybettan/QemuDeviceDrivers-master branch][ybettan/QemuDeviceDrivers-master branch]
     * in this repository, you have a README.md files describing how to compile the driver and use the device
     * once it’s done, send the patch to this mailing list: virtualization@lists.linux-foundation.org
+    
+    
+[virtio-spec]: http://docs.oasis-open.org/virtio/virtio/v1.0/virtio-v1.0.html
+[ybettan/virtio-spec/master branch]: https://github.com/ybettan/virtio-spec
+[ybettan/qemu/virtio branch]: https://github.com/ybettan/qemu/tree/virtio/hw/virtio
+[ybettan/QemuDeviceDrivers-master branch]: https://github.com/ybettan/QemuDeviceDrivers
+[wiki-qemu]: https://wiki.qemu.org/Contribute
