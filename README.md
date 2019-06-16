@@ -92,3 +92,30 @@ virtio also provides device check and configuration.
 <p align="center">
   <img width="550" height="200" src="images/virtualization_vs_paravirtualization.png">
 </p>
+
+## VirtIO device
+
+A virtio device is a paravirtualized device based on virtio communication protocol, as a PCI device is an emulated device based on PCI bus, therefore as we have seen it requires some drivers.
+
+There are two kinds of drivers needed, the first is the guest OS driver, also called the “front-end driver”, and the second is the hypervisor driver, also called the “back-end driver”.
+These two drivers are communicating via the virtio protocol that is based on virtual queues of buffers.
+
+<p align="center">
+  <img width="300" height="300" src="images/drivers_communication.png">
+</p>
+
+As describe in the [virtio-specification](http://docs.oasis-open.org/virtio/virtio/v1.0/virtio-v1.0.html) there are three different ways of implementing the transport of a virtio device:
+
+  * **Over PCI bus** – we will focus on this one
+  * Over MMIO
+  * Over channel I\O
+  
+Implementing a virtio device over a PCI bus can feel a bit nonsense at first since, as we said, a virtio device isn’t a real device so why are we trying to enforce it to act and communicate like one?!
+The answer to that question is simply the fact that we already have an entire infrastructure and multiple functionalities for PCI devices, for example, the Linux command `lspci` to list all the PCI devices running on the machine (or the VM in our case), therefore implementing a virtio device over PCI bus let as use all those features without getting a real device performance penalty.
+
+Implementing a virtio device over MMIO is usually used in virtual environments without PCI support (a common situation in embedded devices models).
+The memory mapped virtio device behavior is based on the PCI device specification, Therefore most operations are nearly identical.
+
+Implementing a virtio device over channel I\O is used on machines that support neither PCI nor MMIO, therefore a different transport is needed.
+A virtual channel device act as a proxy to the virtio device (similar to the way virio-pci uses a PCI device) and operations of the virtio device is accomplished mostly via channel commands.
+This means virtio devices are discoverable via standard OS algorithms.
