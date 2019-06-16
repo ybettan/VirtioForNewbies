@@ -119,3 +119,28 @@ The memory mapped virtio device behavior is based on the PCI device specificatio
 Implementing a virtio device over channel I\O is used on machines that support neither PCI nor MMIO, therefore a different transport is needed.
 A virtual channel device act as a proxy to the virtio device (similar to the way virio-pci uses a PCI device) and operations of the virtio device is accomplished mostly via channel commands.
 This means virtio devices are discoverable via standard OS algorithms.
+
+## Steps to create a new virtio device
+
+When creating a new device there are some steps we should follow:
+
+1. write the device specification
+    * merge it into the official virtio specification
+      * `git clone git clone https://github.com/oasis-tcs/virtio-spec.git`
+      * add your device
+        * use <https://github.com/ybettan/virtio-spec.git> as reference
+        * since the specification is written in LaTex, you will need it to write your own device specification
+          * for Fedora users: `sudo dnf install texlive-scheme-full`
+      * send your patch to virtio-comment@lists.oasis-open.org (mailing list) for feedback first
+      * then send it to virtio@lists.oasis-open.org for review
+    * for more information check [virtio-specification](http://docs.oasis-open.org/virtio/virtio/v1.0/virtio-v1.0.html)
+   
+2. write the device implementation
+    * you can look at the example device at  [Qemu-device-implementation](https://github.com/ybettan/qemu/blob/virtio/hw/virtio/virtio-example.c) located in my fork of the Qemu project
+    * make sure to follow the full commit to find all other files related
+    * once it’s done, check the [Qemu-wiki-page](https://wiki.qemu.org/Contribute) for the full “how to contribute” to Qemu guide
+
+3. write the Linux driver for this device
+    * you can look at the example driver at  [QemuDeviceDriver](https://github.com/ybettan/QemuDeviceDrivers/blob/master/virtio/virtio_example_driver.c) 
+    * in this repository, you have a README.md files describing how to compile the driver and use the device
+    * once it’s done, send the patch to this mailing list: virtualization@lists.linux-foundation.org
