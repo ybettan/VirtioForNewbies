@@ -80,3 +80,15 @@ Therefore we have drivers for each one of them.
 virtio provides **_Driver-unification_**, a uniform ABI for all those hypervisors.
 An ABI is an interface at the compiler level and describes how do parameters are passed to function (register\stack), how interrupts are propagated etc.
 virtio also provides device check and configuration.
+
+## Virtualization VS Paravirtualization
+
+| Virtualization | Paravirtualization |
+|:-------------:|:-------------:|
+| The guest is unaware that it is being virtualized | The guest is aware that it is running on a hypervisor (and not on real HW) |
+| No changes are requested on the OS | Requires modification of the OS |
+| The hypervisor must emulate device HW, this will lead to low performance | The guest and the hypervisor can work cooperatively to make this emulation efficient |
+
+<p align="center">
+  <img width="550" height="200" src="images/virtualization_vs_paravirtualization.png">
+</p>
