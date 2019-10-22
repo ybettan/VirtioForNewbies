@@ -131,8 +131,7 @@ When creating a new device there are some steps we should follow:
         * use [ybettan/virtio-spec/master branch][ybettan/virtio-spec/master branch] as reference
         * since the specification is written in LaTex, you will need it to write your own device specification
           * for Fedora users: `sudo dnf install texlive-scheme-full`
-      * send your patch to virtio-comment@lists.oasis-open.org (mailing list) for feedback first
-      * then send it to virtio@lists.oasis-open.org for review
+      * send your patch to virtio-comment@lists.oasis-open.org (mailing list) for review
     * for more information check [virtio-spec][virtio-spec]
    
 2. write the device implementation
