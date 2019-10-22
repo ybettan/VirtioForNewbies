@@ -128,7 +128,7 @@ When creating a new device there are some steps we should follow:
     * merge it into the official virtio specification
       * `git clone git clone https://github.com/oasis-tcs/virtio-spec.git`
       * add your device
-        * use [ybettan/virtio-spec/master branch][ybettan/virtio-spec/master branch] as reference
+        * use [ybettan/virtio-spec/increment-edu branch][ybettan/virtio-spec/increment-edu branch] as reference
         * since the specification is written in LaTex, you will need it to write your own device specification
           * for Fedora users: `sudo dnf install texlive-scheme-full`
       * send your patch to virtio-comment@lists.oasis-open.org (mailing list) for review
@@ -146,7 +146,7 @@ When creating a new device there are some steps we should follow:
     
     
 [virtio-spec]: http://docs.oasis-open.org/virtio/virtio/v1.0/virtio-v1.0.html
-[ybettan/virtio-spec/master branch]: https://github.com/ybettan/virtio-spec
+[ybettan/virtio-spec/increment-edu branch]: https://github.com/ybettan/virtio-spec/tree/increment-edu
 [ybettan/qemu/virtio branch]: https://github.com/ybettan/qemu/tree/virtio/hw/virtio
 [ybettan/QemuDeviceDrivers-master branch]: https://github.com/ybettan/QemuDeviceDrivers
 [wiki-qemu]: https://wiki.qemu.org/Contribute
